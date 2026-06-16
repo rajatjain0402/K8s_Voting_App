@@ -1,12 +1,13 @@
-FROM python:3.9-slim
-
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 
-# dependencies install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# code copy
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 COPY . .
+RUN dotnet restore Worker.csproj
+RUN dotnet publish Worker.csproj -c Release -o /app/publish
 
-CMD ["python", "worker.py"]
+FROM base
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "Worker.dll"]
