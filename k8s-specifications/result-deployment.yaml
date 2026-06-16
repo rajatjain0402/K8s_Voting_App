@@ -5,7 +5,7 @@ metadata:
     app: result
   name: result
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: result
@@ -15,7 +15,7 @@ spec:
         app: result
     spec:
       containers:
-      - image: dockersamples/examplevotingapp_result
+      - image: $ACR_NAME.azurecr.io/result-app
         name: result
         ports:
         - containerPort: 80
