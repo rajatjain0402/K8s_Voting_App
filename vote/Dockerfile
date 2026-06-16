@@ -1,12 +1,15 @@
 # Define a base stage that uses the official python runtime base image
-FROM python:3.11-slim AS base
+FROM python:3.9-slim
 
 WORKDIR /app
 
-copy requirements.txt
+# dependencies copy alag (cache optimization)
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt && pip install gunicorn
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install gunicorn
 
+# baaki code copy
 COPY . .
 
 EXPOSE 80
