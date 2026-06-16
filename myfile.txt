@@ -1,1 +1,0 @@
-This is voting app and i want to deploy it with aks and ACR
