@@ -23,22 +23,22 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Login to ACR
-        run: az acr login --name $ACR_NAME
+        run: az acr login --name votingacr12345
 
       - name: Build Vote Image
-        run: docker build -t $ACR_NAME.azurecr.io/vote-app:$IMAGE_TAG ./vote
+        run: docker build -t votingacr12345.azurecr.io/vote-app:$IMAGE_TAG ./vote
 
       - name: Build Result Image
-        run: docker build -t $ACR_NAME.azurecr.io/result-app:$IMAGE_TAG ./result
+        run: docker build -t votingacr12345.azurecr.io/result-app:$IMAGE_TAG ./result
 
       - name: Build Worker Image
-        run: docker build -t $ACR_NAME.azurecr.io/worker-app:$IMAGE_TAG ./worker
+        run: docker build -t votingacr12345.azurecr.io/worker-app:$IMAGE_TAG ./worker
 
       - name: Push Vote Image
-        run: docker push $ACR_NAME.azurecr.io/vote-app:$IMAGE_TAG
+        run: docker push votingacr12345.azurecr.io/vote-app:$IMAGE_TAG
 
       - name: Push Result Image
-        run: docker push $ACR_NAME.azurecr.io/result-app:$IMAGE_TAG
+        run: docker push votingacr12345.azurecr.io/result-app:$IMAGE_TAG
 
       - name: Push Worker Image
-        run: docker push $ACR_NAME.azurecr.io/worker-app:$IMAGE_TAG
+        run: docker push votingacr12345.azurecr.io/worker-app:$IMAGE_TAG
