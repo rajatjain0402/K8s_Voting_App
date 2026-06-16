@@ -15,5 +15,5 @@ spec:
         app: worker
     spec:
       containers:
-      - image: $ACR_NAME.azurecr.io/worker-app
+      - image: votingacr12345.azurecr.io/worker-app:latest
         name: worker
