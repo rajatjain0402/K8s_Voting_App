@@ -1,17 +1,17 @@
 name: CI - Build & Push to ACR
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 env:
-ACR_NAME: ${{ secrets.ACR_NAME }}
-IMAGE_TAG: v1
+  ACR_NAME: ${{ secrets.ACR_NAME }}
+  IMAGE_TAG: v1
 
 jobs:
-build-and-push:
-runs-on: ubuntu-latest
+  build-and-push:
+  runs-on: ubuntu-latest
 
 steps:
   - name: Checkout Code
